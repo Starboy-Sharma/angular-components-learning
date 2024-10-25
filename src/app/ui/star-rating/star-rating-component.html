@@ -1,0 +1,14 @@
+<h4 class="is-size-4 is-flex is-align-items-center is-justify-content-space-between"> Please rate our service <button class="button is-dark is-medium mb-2" (click)="toggleEditMode()"> <i class="fa-solid fa-pen-to-square"></i> </button></h4>
+
+<div class="star-rating" [ngClass]="{'edit': isEditMode}">
+    <div class="star-rating-stars">
+        <!-- <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i> -->
+        <p>Total Rating {{rating}}</p>
+        <i *ngFor="let star of stars" (click)="updateRating(star)" (keydown)="updateRating(star)" [ngClass]="star <= rating ? filledStarClass : emptyStarClass"></i>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="accordion box">
+    <div class="accordion-title is-flex is-justify-content-space-between">
+        <h3 class="is-size-5">{{title}}</h3>
+        <button class="is-pulled-right is-button is-small button is-primary" (click)="toggleAccordion()">{{isAccordionOpen ? '-' : '+'}}</button>
+    </div>
+    <div class="accordion-content" [@accordionAnimation]="isAccordionOpen ? 'expanded' : 'collapsed'">
+        <ng-content></ng-content>
+    </div>
+</div>

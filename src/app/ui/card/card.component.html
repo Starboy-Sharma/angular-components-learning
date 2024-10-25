@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-image">
+      <ng-content select="[card-image]"></ng-content>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-4">{{ title || "John Smith" }}</p>
+          <p class="subtitle is-6">{{"@johnsmith"}}</p>
+        </div>
+      </div>
+  
+      <ng-content></ng-content>
+    </div>
+  </div>

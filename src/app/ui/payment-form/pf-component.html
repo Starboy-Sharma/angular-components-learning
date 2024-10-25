@@ -1,0 +1,88 @@
+<div
+    class="form-header is-flex is-justify-content-center is-align-items-center is-flex-direction-column has-background-light p-2">
+    <h1 class="title has-text-black">Payment</h1>
+    <p class="subtitle has-text-black">Please fill in your payment details</p>
+</div>
+
+
+<form action="" class="mt-2" [formGroup]="paymentForm" (ngSubmit)="onSubmit()" autocomplete="off">
+
+    <!-- Card Holder Name -->
+    <div class="field">
+        <label class="label" for="card-holder-name">Name on Card</label>
+        <div class="control">
+            <input type="text" class="input" id="card-holder-name" formControlName="cardHolderName"
+                [ngClass]="{'is-danger': paymentForm.get('cardHolderName')?.invalid && paymentForm.get('cardHolderName')?.touched, 'is-success': paymentForm.get('cardHolderName')?.valid}">
+        </div>
+        <div *ngIf="paymentForm.get('cardHolderName')?.invalid && paymentForm.get('cardHolderName')?.touched">
+            <p class="help is-danger" *ngIf="paymentForm.get('cardHolderName')?.errors?.['required']">Name is required
+            </p>
+            <p class="help is-danger" *ngIf="paymentForm.get('cardHolderName')?.errors?.['minlength']">Name must be at
+                least 3 characters</p>
+            <p class="help is-danger" *ngIf="paymentForm.get('cardHolderName')?.errors?.['maxlength']">Name can be max
+                50 characters</p>
+        </div>
+    </div>
+
+    <!-- Card Number -->
+    <div class="field">
+        <label class="label" for="card-element">Credit card</label>
+        <div class="control">
+            <input type="text" class="input" id="card-element" formControlName="cardNumber" [ngClass]="{'is-danger': paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched, 'is-success': paymentForm.get('cardNumber')?.valid}" maxlength="19">
+        </div>
+        <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched">
+            <p class="help is-danger" *ngIf="paymentForm.get('cardNumber')?.errors?.['required']">Card number is
+                required</p>
+            <p class="help is-danger" *ngIf="paymentForm.get('cardNumber')?.errors?.['pattern']">Card number must be
+                16 digits</p>
+        </div>
+    </div>
+
+    <!-- Expiry and CVV -->
+    <div class="is-flex">
+        <div class="field">
+            <label class="label" for="expiry">Expiry date</label>
+            <div class="control">
+                <input type="text" class="input" id="expiry" placeholder="MM/YY" formControlName="expiry" [ngClass]="{'is-danger': paymentForm.get('expiry')?.invalid && paymentForm.get('expiry')?.touched, 'is-success': paymentForm.get('expiry')?.valid}" (input)="onExpiryInput($event)">
+            </div>
+            <div *ngIf="paymentForm.get('expiry')?.invalid && paymentForm.get('expiry')?.touched">
+                <p class="help is-danger" *ngIf="paymentForm.get('expiry')?.errors?.['required']">Expiry date is
+                    required</p>
+                <p class="help is-danger" *ngIf="paymentForm.get('expiry')?.errors?.['pattern']">Expiry date must be
+                    MM/YY</p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="cvv">Security code</label>
+            <div class="control">
+                <input type="text" class="input" id="cvv" placeholder="cvv" formControlName="cvv" [ngClass]="{'is-danger': paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched, 'is-success': paymentForm.get('cvv')?.valid}">
+            </div>
+            <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched">
+                <p class="help is-danger" *ngIf="paymentForm.get('cvv')?.errors?.['required']">Security code is
+                    required</p>
+                <p class="help is-danger" *ngIf="paymentForm.get('cvv')?.errors?.['pattern']">Security code must be
+                    3 digits</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="zip-code">Zip/Postal Code</label>
+        <div class="control">
+            <input type="text" class="input" id="zip-code" formControlName="zipCode" [ngClass]="{'is-danger': paymentForm.get('zipCode')?.invalid && paymentForm.get('zipCode')?.touched, 'is-success': paymentForm.get('zipCode')?.valid}">
+        </div>
+        <div *ngIf="paymentForm.get('zipCode')?.invalid && paymentForm.get('zipCode')?.touched">
+            <p class="help is-danger" *ngIf="paymentForm.get('zipCode')?.errors?.['required']">Zip/Postal Code is
+                required</p>
+            <p class="help is-danger" *ngIf="paymentForm.get('zipCode')?.errors?.['pattern']">Zip/Postal Code must be
+                5 digits</p>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary" type="submit" [disabled]="!paymentForm.valid">Submit</button>
+        </div>
+    </div>
+
+</form>
