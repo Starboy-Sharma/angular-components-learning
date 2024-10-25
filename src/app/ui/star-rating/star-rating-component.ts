@@ -8,11 +8,13 @@ import { Component, Input } from "@angular/core";
         
         .star-rating {
             pointer-events: none;
+
+            i { color: gold }
         }
 
         .edit {
             cursor: pointer;
-            border: 1px solid yellow;
+            border: 1px solid gold;
             pointer-events: auto;
         }
     `,
